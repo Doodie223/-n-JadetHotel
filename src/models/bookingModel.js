@@ -4,12 +4,12 @@ const bookingSchema = new mongoose.Schema(
   {
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "user",
       required: [true, "User ID is required"],
     },
     room_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Room", // Assuming there's a Room model
+      ref: "room", // Assuming there's a Room model
       required: [true, "Room ID is required"],
     },
     start_date: {

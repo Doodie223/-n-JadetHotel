@@ -19,4 +19,5 @@ const addHotel = (req, res) => {
 
 module.exports = {
   viewHotel,
+  addHotel,
 };

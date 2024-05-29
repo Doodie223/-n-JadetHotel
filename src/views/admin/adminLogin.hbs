@@ -1,6 +1,6 @@
 <div style="background-image: ;">
     <div class="container d-flex justify-content-center align-items-center" style="height: 70vh;">
-        <form action="/login" method="post">
+        <form action="/admin/login" method="post">
             <h1 class="mb-4">Login for ADMIN</h1>
             {{#if error}}
             <div class="alert alert-danger">{{error}}</div>
@@ -13,7 +13,7 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" name="password">
             </div>
-            <button type="submit" class="btn btn-primary" value="login">Sign in</button>
+            <button type="submit" class="btn btn-primary" >Sign in</button>
 
         </form>
     </div>

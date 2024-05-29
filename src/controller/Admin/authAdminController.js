@@ -69,7 +69,7 @@ const Login = async (req, res) => {
         req.session.loggedIn = true;
         req.session.username = admin.adName;
         req.session.isAdmin = true;
-        res.redirect("/admin", { username: admin.adName });
+        res.redirect("/admin");
       } else {
         res.render("admin/adminLogin", {
           layout: "layouts/ADMIN",

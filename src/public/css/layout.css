@@ -1,13 +1,35 @@
-.footer {
-    width: 100%;
-    max-width: 1920px;
-    height: 363px;
-    margin: 0 auto;
+footer {
+    background-color: #0d4c92;
+    /* Sử dụng màu xanh đậm */
+    color: #fff;
+    /* Sử dụng màu trắng cho chữ */
+    padding: 50px 0;
+    /* Thêm khoảng cách padding */
 }
 
-@media (max-width: 1920px) {
-    .footer {
-        width: 100%;
-        height: auto;
-    }
+.footer-details h4 {
+    color: #fff;
+    /* Sử dụng màu trắng cho tiêu đề */
+}
+
+.footer-contact-list i,
+.footer-contact-list p,
+.footer-links a {
+    color: #fff;
+    /* Sử dụng màu trắng cho các liên kết và thông tin liên hệ */
+}
+
+.footer-social-icon a {
+    color: #fff;
+    /* Sử dụng màu trắng cho các biểu tượng mạng xã hội */
+}
+
+.subscribe-box,
+.subscribe-button {
+    background-color: #0d4c92;
+    /* Sử dụng màu xanh đậm cho ô nhập email và nút gửi */
+    color: #fff;
+    /* Sử dụng màu trắng cho chữ */
+    border-color: #fff;
+    /* Sử dụng màu trắng cho viền */
 }

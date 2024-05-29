@@ -2,6 +2,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
 require("dotenv").config();
+const path = require('path');
 
 const app = express();
 const port = 3000;
@@ -18,6 +19,7 @@ app.set("views", "./src/views");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Middleware xử lý 404
 // app.use((req, res, next) => {

@@ -1,5 +1,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
+const session = require("express-session");
+require("dotenv").config();
 
 const app = express();
 const port = 3000;
@@ -17,14 +19,23 @@ app.set("views", "./src/views");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Middleware xử lý 404
+// app.use((req, res, next) => {
+//   res.status(404).render("404");
+// });
+
+app.use(
+  session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false },
+  })
+);
+
 app.use("/api", routerApi);
 app.use("/", indexRouter);
-app.use("/ADMIN", adminRouter);
-
-// Middleware xử lý 404
-app.use((req, res, next) => {
-  res.status(404).render("404");
-});
+app.use("/admin", adminRouter);
 
 app.listen(port, async () => {
   try {

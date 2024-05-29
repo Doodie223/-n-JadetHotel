@@ -24,15 +24,19 @@ const adminSchema = new mongoose.Schema(
       trim: true, // Removes whitespace from both ends of a string
     },
     adPhone: {
-      type: Number,
+      type: String,
       required: [true, "Phone number is required"],
       validate: {
         validator: function (v) {
-          return /^\d{10,15}$/.test(v.toString());
+          return /^\d{10}$/.test(v.toString());
         },
         message: (props) =>
-          `${props.value} is not a valid phone number! Phone number must be between 10 and 15 digits`,
+          `${props.value} is not a valid phone number! Phone number must have exactly 10 digits`,
       },
+    },
+    isAdmin: {
+      type: Boolean,
+      default: true,
     },
   },
   { timestamps: true }

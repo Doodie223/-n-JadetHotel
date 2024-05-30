@@ -1,0 +1,40 @@
+<div class="container">
+    <h1>Thêm khách sạn mới</h1> <a href="/admin/hotels" class="btn btn-success">Trở về </a>
+    {{#if errors}}
+    <div class="alert alert-danger">
+        <ul>
+            {{#each errors}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
+    <form action="/admin/hotels/add" method="POST">
+        <div class="form-group">
+            <label for="hotelName">Tên khách sạn</label>
+            <input type="text" class="form-control" id="hotelName" name="hotelName" value="{{hotel.hotelName}}"
+                required>
+        </div>
+        <div class="form-group">
+            <label for="hotelAddress">Địa chỉ</label>
+            <input type="text" class="form-control" id="hotelAddress" name="hotelAddress" value="{{hotel.hotelAddress}}"
+                required>
+        </div>
+        <div class="form-group">
+            <label for="hotelPhone">Số điện thoại</label>
+            <input type="text" class="form-control" id="hotelPhone" name="hotelPhone" value="{{hotel.hotelPhone}}"
+                required>
+        </div>
+        <div class="form-group">
+            <label for="hotelStandard">Tiêu chuẩn</label>
+            <input type="number" class="form-control" id="hotelStandard" name="hotelStandard" min="1" max="5"
+                value="{{hotel.hotelStandard}}" required>
+        </div>
+        <div class="form-group">
+            <label for="hotelCity">Thành phố</label>
+            <input type="text" class="form-control" id="hotelCity" name="hotelCity" value="{{hotel.hotelCity}}"
+                required>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm</button>
+    </form>
+</div>

@@ -1,0 +1,32 @@
+<div class="container">
+    <h1>Chỉnh sửa khách sạn</h1>
+    <a href="admin/hotels" class="btn btn-success">Quay lại</a>
+    <form action="/admin/hotels/edit/{{hotel._id}}" method="POST">
+        <div class="form-group">
+            <label for="hotelName">Tên khách sạn</label>
+            <input type="text" class="form-control" id="hotelName" name="hotelName" value="{{hotel.hotelName}}"
+                required>
+        </div>
+        <div class="form-group">
+            <label for="hotelAddress">Địa chỉ</label>
+            <input type="text" class="form-control" id="hotelAddress" name="hotelAddress" value="{{hotel.hotelAddress}}"
+                required>
+        </div>
+        <div class="form-group">
+            <label for="hotelPhone">Số điện thoại</label>
+            <input type="text" class="form-control" id="hotelPhone" name="hotelPhone" value="{{hotel.hotelPhone}}"
+                required>
+        </div>
+        <div class="form-group">
+            <label for="hotelStandard">Tiêu chuẩn</label>
+            <input type="number" class="form-control" id="hotelStandard" name="hotelStandard"
+                value="{{hotel.hotelStandard}}" min="1" max="5" required>
+        </div>
+        <div class="form-group">
+            <label for="hotelCity">Thành phố</label>
+            <input type="text" class="form-control" id="hotelCity" name="hotelCity" value="{{hotel.hotelCity}}"
+                required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </form>
+</div>

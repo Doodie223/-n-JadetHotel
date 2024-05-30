@@ -16,7 +16,7 @@ router.get('/login', indexController.LoginPage);
 router.post('/login', indexController.Login)
 
 //Route show rooms
-router.get('/rooms', roomController.showRoom);
+router.get('/hotels', roomController.showHotel);
 router.get('/roomDetail', roomController.roomDetails)
 
 //Route payment

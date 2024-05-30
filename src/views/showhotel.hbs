@@ -1,0 +1,145 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        display: flex;
+    }
+
+    .sidebar {
+        width: 25%;
+        padding: 20px;
+        background-color: #f4f4f4;
+        border-right: 1px solid #ddd;
+    }
+
+    .content {
+        width: 75%;
+        padding: 20px;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+
+    .filter-group {
+        margin-bottom: 15px;
+    }
+
+    .filter-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .filter-group select,
+    .filter-group input[type="range"] {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .hotel-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .hotel-list .hotel {
+        width: calc(33.333% - 20px);
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+    }
+
+    .hotel h3 {
+        margin: 0 0 10px;
+    }
+
+    .hotel p {
+        margin: 5px 0;
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Khách sạn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Bộ lọc</h2>
+            <form>
+                <div class="filter-group">
+                    <label for="city">Thành phố</label>
+                    <select id="city" name="city">
+                        <option value="all">Tất cả</option>
+                        <option value="hanoi">Hà Nội</option>
+                        <option value="hcmc">Hồ Chí Minh</option>
+                        <!-- Thêm các tùy chọn khác nếu cần -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="standard">Tiêu chuẩn</label>
+                    <select id="standard" name="standard">
+                        <option value="all">Tất cả</option>
+                        <option value="5">5 sao</option>
+                        <option value="4">4 sao</option>
+                        <option value="3">3 sao</option>
+                        <!-- Thêm các tùy chọn khác nếu cần -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="priceRange">Giá tiền (0$ - 10000$)</label>
+                    <input type="range" id="priceRange" name="priceRange" min="0" max="10000" value="5000"
+                        oninput="updatePriceValue(this.value)">
+                    <div>Giá hiện tại: <span id="priceValue">5000</span>$</div>
+                </div>
+                <button type="submit">Áp dụng</button>
+            </form>
+        </div>
+        <div class="content">
+            <h2>Danh sách Khách sạn</h2>
+            <div class="hotel-list">
+                {{#each allHotels}}
+                <div>
+                    <div class="hotel-block">{{this.hotelName}}</div>
+                    <div class="hotel-block"></div>
+                    <div class="hotel-block"></div>
+                    <div class="hotel-block"></div>
+                    <div class="hotel-block"></div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <script>
+        function updatePriceValue(value) {
+            document.getElementById('priceValue').innerText = value;
+        }
+    </script>
+</body>
+
+</html>

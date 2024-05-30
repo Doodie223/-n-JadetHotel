@@ -1,6 +1,12 @@
-const showRoom = (req, res) => {
-    res.render('showroom', {
-        layout: 'layouts/main'
+const hotelModel = require('../models/hotelModel')
+
+
+const showHotel = async (req, res) => {
+    const allHotels = await hotelModel.find();
+    res.render('showhotel', {
+        layout: 'layouts/main',
+        allHotels: allHotels,
+        title: 'Show Hotel'
     });
 }
 
@@ -10,6 +16,6 @@ const roomDetails = (req, res) => {
     });
 }
 module.exports = {
-    showRoom,
+    showHotel,
     roomDetails
 }

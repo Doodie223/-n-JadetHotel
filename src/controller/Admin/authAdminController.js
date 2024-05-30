@@ -57,13 +57,6 @@ const Login = async (req, res) => {
     }
 
     const admin = await Admin.findOne({ adEmail: email });
-    console.log(admin);
-    if (!admin) {
-      return res.render("admin/adminLogin", {
-        layout: "layouts/ADMIN",
-        error: "Admin không tồn tại!!! ",
-      });
-    }
     if (admin !== null) {
       if (admin.isAdmin) {
         req.session.loggedIn = true;
@@ -77,9 +70,9 @@ const Login = async (req, res) => {
         });
       }
     } else {
-      res.render("admin/adminLogin", {
+      return res.render("admin/adminLogin", {
         layout: "layouts/ADMIN",
-        error: "Tên đăng nhập hoặc mật khẩu không chính xác.",
+        error: "Admin không tồn tại!!! ",
       });
     }
   } catch (error) {

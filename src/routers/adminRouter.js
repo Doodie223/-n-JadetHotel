@@ -23,5 +23,10 @@ router.get("/register", authController.RegisterPage);
 router.post("/register", authController.Register);
 
 // router for Hotel
-router.get("/hotel", hotelController.viewHotel);
+router.get("/hotels", hotelController.viewHotel);
+router.get("/hotels/add", hotelController.viewAddHotel);
+router.post("/hotels/add", hotelController.addHotel);
+router.get("/hotels/edit/:id", hotelController.viewEditHotel);
+router.post("/hotels/edit/:id", hotelController.editHotel);
+
 module.exports = router;

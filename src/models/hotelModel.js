@@ -17,7 +17,7 @@ const hotelSchema = new mongoose.Schema(
       trim: true, // Removes whitespace from both ends of a string
     },
     hotelPhone: {
-      type: Number,
+      type: String,
       required: [true, "Hotel phone number is required"],
       validate: {
         validator: function (v) {

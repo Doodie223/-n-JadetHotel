@@ -3,6 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 const indexController = require("../controller/indexController");
+const roomController = require("../controller/roomController");
+const paymentController = require("../controller/paymentController");
+const orderController = require("../controller/orderController");
 
 // Route GET '/'
 router.get('/', indexController.Homepage);
@@ -11,5 +14,16 @@ router.get('/about', indexController.About);
 // Route GET 'Login'
 router.get('/login', indexController.LoginPage);
 router.post('/login', indexController.Login)
+
+//Route show rooms
+router.get('/rooms', roomController.showRoom);
+router.get('/roomDetail', roomController.roomDetails)
+
+//Route payment
+router.get('/payment', paymentController.paymentPage)
+
+//Route order 
+router.get('/order', orderController.orderPage)
+
 
 module.exports = router;

@@ -21,7 +21,8 @@
             padding: 20px;
             background-color: #f4f4f4;
             border-right: 1px solid #ddd;
-            margin-top: 20px;
+            margin-top: 65px;
+
         }
 
         .content {
@@ -158,10 +159,13 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="priceRange">Giá tiền (0$ - 10000$)</label>
-                    <input type="range" id="priceRange" name="priceRange" min="0" max="10000" value="5000"
-                        oninput="updatePriceValue(this.value)">
-                    <div>Giá hiện tại: <span id="priceValue">5000</span>$</div>
+                    <label for="minPriceRange">Giá tiền tối thiểu (0$ - 10000$)</label>
+                    <input type="range" id="minPriceRange" name="minPriceRange" min="0" max="10000" value="0"
+                        oninput="updatePriceValues()">
+                    <label for="maxPriceRange">Giá tiền tối đa (0$ - 10000$)</label>
+                    <input type="range" id="maxPriceRange" name="maxPriceRange" min="0" max="10000" value="10000"
+                        oninput="updatePriceValues()">
+                    <div>Khoảng giá: <span id="priceValue">0$ - 10000$</span></div>
                 </div>
                 <button type="submit">Áp dụng</button>
             </form>
@@ -183,10 +187,11 @@
         </div>
     </div>
     <script>
-        function updatePriceValue(value) {
-            document.getElementById('priceValue').innerText = value;
+        function updatePriceValues() {
+            var minPrice = document.getElementById('minPriceRange').value;
+            var maxPrice = document.getElementById('maxPriceRange').value;
+            document.getElementById('priceValue').innerText = minPrice + '$ - ' + maxPrice + '$';
         }
-
     </script>
 </body>
 

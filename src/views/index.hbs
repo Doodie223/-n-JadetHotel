@@ -96,6 +96,7 @@
 
         .service-title {
             color: whitesmoke;
+            margin-top: 40px;
         }
 
         .services {
@@ -109,20 +110,20 @@
             list-style-type: none;
             padding: 0;
 
+
         }
 
         .service-1,
         .service-2,
         .service-3 {
-            width: 450px;
-            height: 600px;
+            width: 460px;
+            height: 650px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             background-color: #2C2C2C;
-            border-radius: 10px;
             overflow: hidden;
         }
 
@@ -134,9 +135,14 @@
             object-fit: cover;
         }
 
+
+
         .service-content {
             color: whitesmoke;
             text-align: center;
+            width: 400px;
+            height: 172.8px;
+            margin-bottom: 40px;
         }
 
         .discover-more {
@@ -158,12 +164,12 @@
                     nec egestas. Turpis risus mauris turpis id consectetur.</a>
             </div>
             <div class="arrow-down" onclick="jump()">⮟</div>
-            <div class="title-welcome-4">Scroll down for more</div>
+            <div class="title-welcome-4">Click here for more</div>
         </div>
         <div class="service-display">
             <div class="service-title">
-                <H1>Room & Suite</H1><br>
-                <p>Lorem ipsum dolor sit amet consectetur. Diam pharetra ornare tellus eu in ultrices. </p>
+                <H1>Services we Serve</H1><br>
+                <p><b>Lorem ipsum dolor sit amet consectetur. Diam pharetra ornare tellus eu in ultrices.</b> </p>
             </div>
             <div class="services">
                 <ul class="horizontal-list">
@@ -171,6 +177,7 @@
                         <img src="../public/img/service 1.jpg">
                         <div class="service-content">
                             <a>
+                                <br>
                                 <h4>Tours with local</h4><br>
                                 Lorem ipsum dolor sit amet consectetur. Et eu pretium mauris amet. Amet sit odio
                                 adipiscing
@@ -178,7 +185,7 @@
                             </a><br>
 
                             <a href="#">
-                                <p class="discover-more"><b>DISCOVER MORE</b></p>
+                                <p class="discover-more"><b><br>DISCOVER MORE</b></p>
                             </a>
                             </a>
                         </div>
@@ -187,6 +194,7 @@
                         <img src=" ../public/img/service 2.jpg">
                         <div class="service-content">
                             <a>
+                                <br>
                                 <h4>Massage & relax</h4><br>
                                 Lorem ipsum dolor sit amet consectetur. Et eu pretium mauris amet. Amet sit odio
                                 adipiscing
@@ -194,7 +202,7 @@
                             </a><br>
 
                             <a href="#">
-                                <p class="discover-more"><b>DISCOVER MORE</b></p>
+                                <p class="discover-more"><b><br>DISCOVER MORE</b></p>
                             </a>
 
                         </div>
@@ -203,6 +211,7 @@
                         <img src="../public/img/service 3.jpg">
                         <div class="service-content">
                             <a>
+                                <br>
                                 <h4>Taste de Cuisine</h4><br>
                                 Lorem ipsum dolor sit amet consectetur. Et eu pretium mauris amet. Amet sit odio
                                 adipiscing
@@ -210,7 +219,7 @@
                             </a><br>
 
                             <a href="#">
-                                <p class="discover-more"><b>DISCOVER MORE</b></p>
+                                <p class="discover-more"><b><br>DISCOVER MORE</b></p>
                             </a>
                             </a>
                         </div>
@@ -226,9 +235,9 @@
                 arrow.style.bottom = '20px'; // Thay đổi vị trí của mũi tên khi nhấn vào
                 setTimeout(() => {
                     arrow.style.bottom = '70px'; // Reset lại vị trí sau một khoảng thời gian
-                }, 500);
+                }, 490);
                 window.scrollBy({
-                    top: 805,
+                    top: 830,
                     behavior: 'smooth'
                 });
             }

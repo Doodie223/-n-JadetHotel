@@ -3,13 +3,16 @@ const RoomsTypeModel = require("../../models/roomtypeModel");
 const viewRoomsTypes = async (req, res) => {
   try {
     const username = req.session.username;
+    const successMessage = req.query.successMessage;
     const roomsTypes = await RoomsTypeModel.find();
     res.render("admin/managerRoomType/index_room_type", {
       layout: "layouts/ADMIN",
       title: "Room Types Management",
       roomsTypes: roomsTypes,
       username,
+      successMessage,
     });
+    req.query.successMessage = null;
   } catch (error) {
     console.log(error);
   }
@@ -26,15 +29,11 @@ const newRoomTypeForm = async (req, res) => {
 
 const createRoomType = async (req, res) => {
   try {
-    const username = req.session.username;
     const { type, description } = req.body;
-    const newRoomType = new RoomType({ type, description });
+    const newRoomType = new RoomsTypeModel({ type, description });
     await newRoomType.save();
-    const message = "Create new room type successfully !!!";
-    res.redirect("/admin/roomsTypes", {
-      username,
-      message,
-    });
+    req.session.successMessage = "Create new room type successfully !!!";
+    res.redirect(`/admin/roomsType`);
   } catch (err) {
     console.log(err);
     res.render("error", { message: err.message, stack: err.stack });
@@ -44,14 +43,15 @@ const createRoomType = async (req, res) => {
 const editRoomTypeForm = async (req, res) => {
   try {
     const username = req.session.username;
-    const roomType = await RoomType.findById(req.params.id);
+    const roomType = await RoomsTypeModel.findById(req.params.id);
     if (!roomType) {
       return res.render("error", { message: "Room type not found", stack: "" });
     }
-    res.render("admin/managerRoomType/adminHotel", {
+    res.render("admin/managerRoomType/room_type", {
       layout: "layouts/ADMIN",
-      username,
+      title: "Edit Room Types",
       roomType,
+      username,
     });
   } catch (err) {
     console.log(err);
@@ -59,9 +59,33 @@ const editRoomTypeForm = async (req, res) => {
   }
 };
 
-const updateRoomType = async (req, res) => {};
+const updateRoomType = async (req, res) => {
+  try {
+    const { type, description } = req.body;
+    await RoomsTypeModel.findByIdAndUpdate(req.params.id, {
+      type,
+      description,
+    });
+    const message = "Update room type successfully !!!";
+    res.redirect(`/admin/roomsType`);
+  } catch (err) {
+    console.log(err);
+    res.render("error", { message: err.message, stack: err.stack });
+  }
+};
 
-const deleteRoomType = async (req, res) => {};
+const deleteRoomType = async (req, res) => {
+  try {
+    //const username = req.session.username;
+    await RoomsTypeModel.findByIdAndDelete(req.params.id);
+    const successMessage = "Delete room type successfully !!!";
+    console.log(successMessage);
+    res.json({ successMessage });
+  } catch (err) {
+    console.log(err);
+    res.json({ errorMessage: err.message });
+  }
+};
 
 module.exports = {
   viewRoomsTypes,

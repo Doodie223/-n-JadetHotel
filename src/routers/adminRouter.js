@@ -26,20 +26,22 @@ router.post("/register", authController.Register);
 
 // router for Hotel
 router.get("/hotels", hotelController.viewHotel);
+router.get("/hotels/view/:id", hotelController.viewDetailHotel);
 router.get("/hotels/add", hotelController.viewAddHotel);
 router.post("/hotels/add", hotelController.addHotel);
 router.get("/hotels/edit/:id", hotelController.viewEditHotel);
 router.post("/hotels/edit/:id", hotelController.editHotel);
+router.post("/hotels/delete/:id", hotelController.deleteHotel);
 
 // router for Rooms
 router.get("/rooms", roomController.viewRooms);
 
 // router for roomsTypes
-router.get("/roomsTypes", roomTypeController.viewRoomsTypes);
+router.get("/roomsType", roomTypeController.viewRoomsTypes);
 router.get("/roomsType/new", roomTypeController.newRoomTypeForm);
 router.post("/roomsType/new", roomTypeController.createRoomType);
 router.get("/roomsType/edit/:id", roomTypeController.editRoomTypeForm);
 router.post("/roomsType/edit/:id", roomTypeController.updateRoomType);
-router.post("/roomsType/delete/:id", roomTypeController.deleteRoomType);
+router.delete("/roomsType/delete/:id", roomTypeController.deleteRoomType);
 
 module.exports = router;

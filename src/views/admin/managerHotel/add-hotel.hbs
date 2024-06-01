@@ -9,7 +9,7 @@
         </ul>
     </div>
     {{/if}}
-    <form action="/admin/hotels/add" method="POST">
+    <form action="/admin/hotels/add" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="hotelName">Tên khách sạn</label>
             <input type="text" class="form-control" id="hotelName" name="hotelName" value="{{hotel.hotelName}}"
@@ -34,6 +34,10 @@
             <label for="hotelCity">Thành phố</label>
             <input type="text" class="form-control" id="hotelCity" name="hotelCity" value="{{hotel.hotelCity}}"
                 required>
+        </div>
+        <div class="form-group">
+            <label for="hotelImages">Ảnh</label>
+            <input type="file" id="hotelImages" name="hotelImages" multiple required>
         </div>
         <button type="submit" class="btn btn-primary">Thêm</button>
     </form>

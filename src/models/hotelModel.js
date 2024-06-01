@@ -40,6 +40,16 @@ const hotelSchema = new mongoose.Schema(
       maxlength: [100, "Hotel city must be at most 100 characters long"],
       trim: true, // Removes whitespace from both ends of a string
     },
+    hotelImages: {
+      type: [String], // Array of strings to store multiple image paths
+      required: [true, "At least one hotel image is required"],
+      validate: {
+        validator: function (v) {
+          return v.length > 0; // Ensure there's at least one image
+        },
+        message: "At least one hotel image is required",
+      },
+    },
   },
   { timestamps: true }
 );

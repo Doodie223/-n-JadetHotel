@@ -4,7 +4,6 @@ const viewHotel = async (req, res) => {
   try {
     const username = req.session.username;
     const data = await hotelModel.find();
-    console.log(data)
     res.render("admin/managerHotel/adminHotel", {
       layout: "layouts/ADMIN",
       hotel: data,

@@ -30,7 +30,7 @@ const roomSchema = new mongoose.Schema(
     description: {
       type: String,
       required: [true, "Description is required"],
-      maxlength: [500, "Description must be at most 500 characters long"],
+      maxlength: [2000, "Description must be at most 500 characters long"],
       trim: true, // Removes whitespace from both ends of the string
     },
     roomImages: {

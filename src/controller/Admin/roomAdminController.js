@@ -40,7 +40,6 @@ const viewRooms = async (req, res) => {
         roomType: roomTypes[index],
       };
     });
-    console.log(roomsWithTypes);
 
     res.render("admin/managerRoom/index_room", {
       layout: "layouts/ADMIN",

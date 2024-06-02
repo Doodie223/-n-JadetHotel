@@ -58,7 +58,6 @@ const viewAddRooms = async (req, res) => {
     const username = req.session.username;
     const hotelId = req.params.id;
     const roomTypes = await roomTypeModel.find({});
-    console.log(roomTypes);
     res.render("admin/managerRoom/add_room", {
       layout: "layouts/ADMIN",
       username,

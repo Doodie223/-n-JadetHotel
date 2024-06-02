@@ -30,20 +30,20 @@ const addHotel = async (req, res) => {
       const { hotelName, hotelAddress, hotelPhone, hotelStandard, hotelCity } =
         req.body;
 
-      if (errors.length > 0) {
-        return res.render("admin/managerHotel/add-hotel", {
-          layout: "layouts/ADMIN",
-          username,
-          errors,
-          hotel: {
-            hotelName,
-            hotelAddress,
-            hotelPhone,
-            hotelStandard,
-            hotelCity,
-          },
-        });
-      }
+      // if (errors.length > 0) {
+      //   return res.render("admin/managerHotel/add-hotel", {
+      //     layout: "layouts/ADMIN",
+      //     username,
+      //     errors,
+      //     hotel: {
+      //       hotelName,
+      //       hotelAddress,
+      //       hotelPhone,
+      //       hotelStandard,
+      //       hotelCity,
+      //     },
+      //   });
+      // }
 
       const hotelImages = req.files.map((file) => `/uploads/${file.filename}`);
 

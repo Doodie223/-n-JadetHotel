@@ -12,10 +12,30 @@ const roomSchema = new mongoose.Schema(
       ref: "RoomType", // Assuming there's a RoomType model
       required: [true, "Room type ID is required"],
     },
+    number: {
+      type: Number,
+      required: [true, "Number is required"],
+      min: [0, "Number must be a positive number"],
+    },
+    acreage: {
+      type: Number,
+      required: [true, "Acreage is required"],
+      min: [0, "Acreage must be a positive number"],
+    },
     price: {
       type: Number,
       required: [true, "Price is required"],
       min: [0, "Price must be a positive number"],
+    },
+    roomImages: {
+      type: [String], // Array of strings to store multiple image paths
+      required: [true, "At least one room image is required"],
+      validate: {
+        validator: function (v) {
+          return v.length > 0; // Ensure there's at least one image
+        },
+        message: "At least one room image is required",
+      },
     },
   },
   { timestamps: true }

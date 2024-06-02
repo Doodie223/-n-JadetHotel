@@ -15,7 +15,13 @@ const roomDetails = (req, res) => {
         layout: 'layouts/main'
     });
 }
+const showRoomPage = (req, res) => {
+    res.render('showroom', {
+        layout: 'layouts/main'
+    });
+}
 module.exports = {
     showHotel,
-    roomDetails
+    roomDetails,
+    showRoomPage
 }

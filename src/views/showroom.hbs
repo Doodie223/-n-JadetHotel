@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý Khách sạn</title>
+    <title>Quản lý Phòng Khách sạn</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -79,12 +79,12 @@
             background-color: #0056b3;
         }
 
-        .hotel-list {
+        .room-list {
             display: flex;
             flex-direction: column;
         }
 
-        .hotel {
+        .room {
             display: flex;
             padding: 10px;
             margin-bottom: 10px;
@@ -93,42 +93,33 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .hotel:hover {
+        .room:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .hotel img {
+        .room img {
             width: 400px;
             height: 266px;
             object-fit: cover;
             margin-right: 10px;
         }
 
-        .hotel-details {
+        .room-details {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             flex-grow: 1;
         }
 
-        .hotel-name {
+        .room-name {
             font-size: 1.2em;
             font-weight: bold;
         }
 
-        .hotel-price {
+        .room-price {
             color: #007BFF;
             font-size: 1em;
-        }
-
-        .hotel-standard {
-            text-align: center;
-            background-color: #f0f0f0;
-            padding: 5px;
-            border-radius: 5px;
-            width: 50px;
-            margin: 0 auto;
         }
     </style>
 </head>
@@ -136,33 +127,24 @@
 <body>
     <div class="container">
         <div class="sidebar">
-            <h2>Bộ lọc</h2>
+            <h2>Bộ lọc Phòng</h2>
             <form onsubmit="updateURL(event)">
                 <div class="filter-group">
-                    <label for="city">Thành phố</label>
-                    <select id="city" name="city">
+                    <label for="roomType">Loại phòng</label>
+                    <select id="roomType" name="roomType">
                         <option value="all">Tất cả</option>
-                        <option value="hanoi">Hà Nội</option>
-                        <option value="hcmc">Hồ Chí Minh</option>
+                        <option value="single">Phòng đơn</option>
+                        <option value="double">Phòng đôi</option>
+                        <option value="suite">Phòng suite</option>
                         <!-- Thêm các tùy chọn khác nếu cần -->
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="standard">Tiêu chuẩn</label>
-                    <select id="standard" name="standard">
-                        <option value="all">Tất cả</option>
-                        <option value="5">5 sao</option>
-                        <option value="4">4 sao</option>
-                        <option value="3">3 sao</option>
-                        <!-- Thêm các tùy chọn khác nếu cần -->
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="minPriceRange">Giá tiền tối thiểu (0$ - 10000$)</label>
-                    <input type="range" id="minPriceRange" name="minPriceRange" min="0" max="10000" value="0"
+                    <label for="minPriceRange">Giá tiền tối thiểu (0$ - 5000$)</label>
+                    <input type="range" id="minPriceRange" name="minPriceRange" min="0" max="5000" value="0"
                         oninput="updatePriceValues()">
-                    <label for="maxPriceRange">Giá tiền tối đa (0$ - 10000$)</label>
-                    <input type="range" id="maxPriceRange" name="maxPriceRange" min="0" max="10000" value="10000"
+                    <label for="maxPriceRange">Giá tiền tối đa (5000$ - 10000$)</label>
+                    <input type="range" id="maxPriceRange" name="maxPriceRange" min="5000" max="10000" value="5000"
                         oninput="updatePriceValues()">
                     <div>Khoảng giá: <span id="priceValue">0$ - 10000$</span></div>
                 </div>
@@ -170,15 +152,14 @@
             </form>
         </div>
         <div class="content">
-            <h2>Danh sách Khách sạn</h2>
-            <div class="hotel-list">
-                {{#each allHotels}}
-                <div class="hotel">
-                    <img src="../public/img/hotel-1.jpg" alt="{{this.hotelName}}">
-                    <div class="hotel-details">
-                        <div class="hotel-name">{{this.hotelName}}</div>
-                        <div class="hotel-standard">{{this.hotelStandard}} sao</div>
-                        <div class="hotel-price">{{this.hotelPrice}}$</div>
+            <h2>Danh sách Phòng</h2>
+            <div class="room-list">
+                {{#each allRooms}}
+                <div class="room">
+                    <img src="../public/img/room-1.jpg" alt="{{this.roomName}}">
+                    <div class="room-details">
+                        <div class="room-name">{{this.roomName}}</div>
+                        <div class="room-price">{{this.roomPrice}}$</div>
                     </div>
                 </div>
                 {{/each}}
@@ -194,14 +175,12 @@
 
         function updateURL(event) {
             event.preventDefault();
-            var city = document.getElementById('city').value;
-            var standard = document.getElementById('standard').value;
+            var roomType = document.getElementById('roomType').value;
             var minPrice = document.getElementById('minPriceRange').value;
             var maxPrice = document.getElementById('maxPriceRange').value;
 
-            var queryParams = new URLSearchParams();
-            queryParams.set('city', city);
-            queryParams.set('standard', standard);
+            var queryParams = new URLSearchParams(window.location.search);
+            queryParams.set('roomType', roomType);
             queryParams.set('minPriceRange', minPrice);
             queryParams.set('maxPriceRange', maxPrice);
 
@@ -210,11 +189,8 @@
 
         function setInitialValues() {
             var queryParams = new URLSearchParams(window.location.search);
-            if (queryParams.has('city')) {
-                document.getElementById('city').value = queryParams.get('city');
-            }
-            if (queryParams.has('standard')) {
-                document.getElementById('standard').value = queryParams.get('standard');
+            if (queryParams.has('roomType')) {
+                document.getElementById('roomType').value = queryParams.get('roomType');
             }
             if (queryParams.has('minPriceRange')) {
                 document.getElementById('minPriceRange').value = queryParams.get('minPriceRange');

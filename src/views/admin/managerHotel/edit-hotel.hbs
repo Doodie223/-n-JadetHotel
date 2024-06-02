@@ -1,7 +1,8 @@
 <div class="container">
     <h1>Chỉnh sửa khách sạn</h1>
-    <a href="admin/hotels" class="btn btn-success">Quay lại</a>
-    <form action="/admin/hotels/edit/{{hotel._id}}" method="POST">
+    <a href="/admin/hotels/view/{{hotel._id}}" class="btn btn-success">Quay lại</a>
+
+    <form action="/admin/hotels/edit/{{hotel._id}}" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="hotelName">Tên khách sạn</label>
             <input type="text" class="form-control" id="hotelName" name="hotelName" value="{{hotel.hotelName}}"
@@ -26,6 +27,11 @@
             <label for="hotelCity">Thành phố</label>
             <input type="text" class="form-control" id="hotelCity" name="hotelCity" value="{{hotel.hotelCity}}"
                 required>
+        </div>
+        <div class="form-group">
+            <label for="hotelImages">Ảnh</label>
+            <input type="file" class="form-control-file" id="hotelImages" name="hotelImages" accept="image/*" multiple required>
+            <small class="form-text text-muted">Vui lòng chọn một hoặc nhiều ảnh để tải lên.</small>
         </div>
         <button type="submit" class="btn btn-primary">Cập nhật</button>
     </form>

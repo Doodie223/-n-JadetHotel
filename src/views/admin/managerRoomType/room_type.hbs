@@ -13,8 +13,8 @@
 <body>
     <div class="container mt-5">
         <h1>{{#if roomType}}Edit{{else}}New{{/if}} Room Type</h1>
-        <a href="/admin/roomTypes" class="btn btn-secondary mb-3">Back to Room Types</a>
-        <form action="{{#if roomType}}/roomtype/edit/{{roomType._id}}{{else}}/roomtype/new{{/if}}" method="POST">
+        <a href="/admin/roomsType" class="btn btn-secondary mb-3">Back to Room Types</a>
+        <form action="{{#if roomType}}/admin/roomsType/edit/{{roomType._id}}{{else}}/admin/roomsType/new{{/if}}" method="POST">
             <div class="mb-3">
                 <label for="type" class="form-label">Type:</label>
                 <input type="text" id="type" name="type" class="form-control" value="{{roomType.type}}" required

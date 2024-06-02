@@ -34,7 +34,21 @@ router.post("/hotels/edit/:id", hotelController.editHotel);
 router.post("/hotels/delete/:id", hotelController.deleteHotel);
 
 // router for Rooms
-router.get("/rooms", roomController.viewRooms);
+router.get("/rooms/viewbyHotel/:idHotel", roomController.viewRooms);
+router.get("/rooms/viewbyHotel/:id/addNew", roomController.viewAddRooms);
+router.post("/rooms/viewbyHotel/:id/addNew", roomController.addRooms);
+router.get(
+  "/rooms/viewbyHotel/:idHotel/edit/:idRoom",
+  roomController.viewEditRoom
+);
+router.post(
+  "/rooms/viewbyHotel/:idHotel/edit/:idRoom",
+  roomController.updateRoom
+);
+router.delete(
+  "/rooms/viewbyHotel/:idHotel/delete/:idRoom",
+  roomController.deleteRoom
+);
 
 // router for roomsTypes
 router.get("/roomsType", roomTypeController.viewRoomsTypes);

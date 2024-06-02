@@ -105,16 +105,20 @@ const addRooms = async (req, res) => {
 
 const viewEditRoom = async (req, res) => {
   try {
+    
     const username = req.session.username;
     const { idHotel, idRoom } = req.params;
+
     const room = await roomModel.findById(idRoom);
     const roomTypes = await roomTypeModel.find({});
+    const hotel = await hotelModel.findById(idHotel)
     res.render("admin/managerRoom/edit_room", {
       layout: "layouts/ADMIN",
       username,
       room,
       roomTypes,
       idHotel,
+      hotel
     });
   } catch (error) {
     console.error(error);
@@ -131,22 +135,36 @@ const updateRoom = async (req, res) => {
 
     try {
       const { idHotel, idRoom } = req.params;
-      const { roomtype_id, number, acreage, price } = req.body;
-      const roomImages = req.files.map((file) => `/uploads/${file.filename}`);
+      const { roomtype_id, number, acreage, price, description } = req.body;
+      
+      // Kiểm tra xem có hình ảnh mới được tải lên không
+      let roomImages = [];
+      if (req.files && req.files.length > 0) {
+        roomImages = req.files.map((file) => `/uploads/${file.filename}`);
+      }
 
+      // Tạo một đối tượng để cập nhật dữ liệu phòng
+      const updateData = { roomtype_id, number, acreage, price, description };
+      // Thêm hình ảnh vào đối tượng cập nhật nếu có hình ảnh mới
+      if (roomImages.length > 0) {
+        updateData.roomImages = roomImages;
+      }
+
+      // Thực hiện cập nhật dữ liệu phòng
       await roomModel.findByIdAndUpdate(
         idRoom,
-        { roomtype_id, number, acreage, price, roomImages },
+        updateData,
         { new: true }
       );
 
-      res.redirect(`/rooms/viewbyHotel/${idHotel}`);
+      res.redirect(`/admin/rooms/viewbyHotel/${idHotel}`);
     } catch (error) {
       console.error("Error when updating room: ", error);
       res.status(400).send("Error updating room");
     }
   });
 };
+
 
 const deleteRoom = async (req, res) => {
   try {

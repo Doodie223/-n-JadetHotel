@@ -67,8 +67,21 @@ const addHotel = async (req, res) => {
 const viewHotel = async (req, res) => {
   try {
     const username = req.session.username;
-    const data = await hotelModel.find();
-    console.log(data);
+    const data = await hotelModel.aggregate([
+            {
+                $lookup: {
+                    from: 'rooms', // the collection name in MongoDB is usually the plural of the model name
+                    localField: '_id',
+                    foreignField: 'hotel_id',
+                    as: 'rooms'
+                }
+            },
+            {
+                $addFields: {
+                    roomCount: { $size: '$rooms' }
+                }
+            }
+        ]);
     res.render("admin/managerHotel/adminHotel", {
       layout: "layouts/ADMIN",
       hotel: data,

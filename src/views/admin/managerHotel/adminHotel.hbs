@@ -8,35 +8,34 @@
     <h1>List of Hotels</h1>
     <a href="/admin/hotels/add" class="btn btn-primary">Thêm Hotels</a>
     <table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Ảnh</th>
-            <th scope="col">Tên khách sạn</th>
-            <th scope="col">Địa chỉ</th>
-            <th scope="col">Số điện thoại</th>
-            <th scope="col">Tiêu chuẩn</th>
-            <th scope="col">Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each hotel}}
-        <tr>
-            <td>
-                <img src="{{this.hotelImages.[0]}}" alt="Hotel Image" class="hotel-image img-thumbnail">
-            </td>
-            <td>{{this.hotelName}}</td>
-            <td>{{this.hotelAddress}}</td>
-            <td>{{this.hotelPhone}}</td>
-            <td>{{this.hotelStandard}}</td>
-            <td>
-                <a href="/admin/hotels/view/{{this._id}}" class="btn btn-primary btn-sm">View</a>
-                <a href="/admin/rooms/viewbyHotel/{{this._id}}" class="btn btn-primary btn-sm">View Room</a>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+        <thead>
+            <tr>
+                <th scope="col">Ảnh</th>
+                <th scope="col">Tên khách sạn</th>
+                <th scope="col">Địa chỉ</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Tiêu chuẩn</th>
+                <th scope="col">Tổng số phòng</th>
+                <th scope="col">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each hotel}}
+            <tr>
+                <td>
+                    <img src="{{this.hotelImages.[0]}}" alt="Hotel Image" class="hotel-image img-thumbnail">
+                </td>
+                <td>{{this.hotelName}}</td>
+                <td>{{this.hotelAddress}}</td>
+                <td>{{this.hotelPhone}}</td>
+                <td>{{this.hotelStandard}}</td>
+                <td>{{this.roomCount}}</td>
+                <td>
+                    <a href="/admin/hotels/view/{{this._id}}" class="btn btn-primary btn-sm">View</a>
+                    <a href="/admin/rooms/viewbyHotel/{{this._id}}" class="btn btn-primary btn-sm">View Room</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>
-
-
-

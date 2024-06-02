@@ -1,0 +1,88 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .room-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .room {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin: 1rem;
+        padding: 1rem;
+        text-align: center;
+        width: 300px;
+    }
+
+    .room img {
+        max-width: 100%;
+        border-radius: 5px;
+    }
+
+    .room h2 {
+        color: #333;
+    }
+
+    .room p {
+        color: #666;
+    }
+
+    .btn {
+        background-color: #28a745;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 1rem;
+    }
+
+    .btn:hover {
+        background-color: #218838;
+    }
+</style>
+<main>
+    <section class="room-list">
+        <article class="room">
+            <img src="https://www.sofitel-legend-metropole-hanoi.com/wp-content/uploads/sites/95/2024/01/DSC04228.jpg"
+                alt="Phòng Deluxe">
+            <h2>Phòng Deluxe</h2>
+            <p>Phòng rộng rãi với giường đôi và tầm nhìn ra thành phố.</p>
+            <a href="#" class="btn">Đặt phòng ngay</a>
+        </article>
+        <article class="room">
+            <img src="room2.jpg" alt="Phòng Suite">
+            <h2>Phòng Suite</h2>
+            <p>Phòng cao cấp với phòng khách riêng biệt và dịch vụ cao cấp.</p>
+            <a href="#" class="btn">Đặt phòng ngay</a>
+        </article>
+        <!-- Thêm các phòng khác tương tự -->
+    </section>
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.2067545028262!2d105.84581197504848!3d21.024411687928303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab938bd88ecd%3A0x48551eccd234e1cb!2zNDRCIFAuIEzDvSBUaMaw4budbmcgS2nhu4d0LCBUcuG6p24gSMawbmcgxJDhuqFvLCBIb8OgbiBLaeG6v20sIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1717358403156!5m2!1svi!2s"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+</main>
+
+<script>
+    // Thêm các phòng khác tương tự
+    var rooms = document.querySelectorAll('.room');
+    rooms.forEach(function (room) {
+        room.addEventListener('click', function (e) {
+            e.preventDefault();
+</script>

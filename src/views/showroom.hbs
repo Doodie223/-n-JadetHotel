@@ -155,11 +155,14 @@
             <h2>Danh sách phòng của khách sạn {{hotel.hotelName}}</h2>
             <div class="room-list">
                 {{#each allRoom}}
-                <div class="room">
+
+                <div class="room" data-id="{{this._id}}">
                     <img src="{{this.roomImages.[0]}}" alt="Room Images">
                     <div class="room-details">
+                        <div class="room-type">{{this.Room_Specs.type}}</div>
                         <div class="room-name">{{this.number}}</div>
-                        <div class="room-price">{{this.acreage}}$</div>
+                        <div class="room-acreage">{{this.acreage}} M²</div>
+                        <div class="room-price">{{this.price}}$</div>
                     </div>
                 </div>
                 {{/each}}
@@ -167,6 +170,23 @@
         </div>
     </div>
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Tìm tất cả các thẻ .hotel sau khi trang đã tải xong
+            const rooms = document.querySelectorAll('.room');
+
+            rooms.forEach(room => {
+                room.addEventListener('click', function () {
+                    // Lấy id của khách sạn từ thuộc tính data-id
+                    const roomId = this.getAttribute('data-id');
+                    // Xây dựng URL động dựa trên môi trường hiện tại
+                    const baseUrl = `${window.location.protocol}//${window.location.host}`;
+                    // Chuyển hướng đến trang chi tiết khách sạn
+                    window.location.href = `${baseUrl}/showroom/roomDetails/${roomId}`;
+                });
+            });
+        });
+
+
         function updatePriceValues() {
             var minPrice = document.getElementById('minPriceRange').value;
             var maxPrice = document.getElementById('maxPriceRange').value;

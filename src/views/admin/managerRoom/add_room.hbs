@@ -1,3 +1,15 @@
+<style>
+    .description-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .description-label {
+        margin-right: 10px;
+    }
+</style>
+
+
 <div class="container">
     <h1>Add New Room</h1>
     <form action="/admin/rooms/viewbyHotel/{{hotelId}}/addNew" method="POST" enctype="multipart/form-data">
@@ -21,9 +33,10 @@
             <label for="price">Price:</label>
             <input type="number" name="price" id="price" required min="0">
         </div>
-        <div>
+        <div class="description-group">
             <label for="description">Description:</label>
-            <input type="text" name="description" id="description" required min="0">
+            <textarea type="text" name="description" id="description" required min="0" rows="5" cols="50"
+                style="resize: both;"></textarea>
         </div>
         <div>
             <label for="roomImages">Room Images:</label>

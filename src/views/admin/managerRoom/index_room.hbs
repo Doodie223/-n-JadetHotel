@@ -1,0 +1,34 @@
+<div class="container">
+    <h1>Quản lý khách sạn</h1>
+    <a href="hotels/add" class="btn btn-success">Thêm phòng</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Tên khách sạn</th>
+                <th scope="col">Địa chỉ</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Tiêu chuẩn</th>
+                {{!-- <th scope="col">Thành phố</th> --}}
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each hotel}}
+            <tr>
+                <td>{{this.hotelName}}</td>
+                <td>{{this.hotelAddress}}</td>
+                <td>{{this.hotelPhone}}</td>
+                <td>{{this.hotelStandard}}</td>
+                {{!-- <td>{{this.hotelCity}}</td> --}}
+                <td>
+                    <a href="hotels/edit/{{this._id}}" class="btn btn-warning btn-sm">Sửa</a>
+                    <form action="admin/hotels/delete/{{this._id}}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

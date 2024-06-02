@@ -152,14 +152,14 @@
             </form>
         </div>
         <div class="content">
-            <h2>Danh sách Phòng</h2>
+            <h2>Danh sách phòng của khách sạn {{hotel.hotelName}}</h2>
             <div class="room-list">
-                {{#each allRooms}}
+                {{#each allRoom}}
                 <div class="room">
-                    <img src="../public/img/room-1.jpg" alt="{{this.roomName}}">
+                    <img src="{{this.roomImages.[0]}}" alt="Room Images">
                     <div class="room-details">
-                        <div class="room-name">{{this.roomName}}</div>
-                        <div class="room-price">{{this.roomPrice}}$</div>
+                        <div class="room-name">{{this.number}}</div>
+                        <div class="room-price">{{this.acreage}}$</div>
                     </div>
                 </div>
                 {{/each}}

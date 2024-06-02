@@ -1,4 +1,5 @@
 const hotelModel = require('../models/hotelModel')
+const roomModel = require('../models/roomModel')
 
 
 const showHotel = async (req, res) => {
@@ -15,9 +16,15 @@ const roomDetails = (req, res) => {
         layout: 'layouts/main'
     });
 }
-const showRoomPage = (req, res) => {
+const showRoomPage = async (req, res) => {
+    const hotel = await hotelModel.findById(req.params.id)
+    const allRoom = await roomModel.find({ hotel_id: req.params.id })
+    console.log(allRoom)
     res.render('showroom', {
-        layout: 'layouts/main'
+        layout: 'layouts/main',
+        hotel: hotel,
+        allRoom: allRoom,
+        title: 'Show Room'
     });
 }
 module.exports = {

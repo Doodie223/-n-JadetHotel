@@ -100,7 +100,7 @@
 
         .hotel img {
             width: 400px;
-            height: 266px;
+            height: 400px;
             object-fit: cover;
             margin-right: 10px;
         }
@@ -173,8 +173,8 @@
             <h2>Danh sách Khách sạn</h2>
             <div class="hotel-list">
                 {{#each allHotels}}
-                <div class="hotel">
-                    <img src="../public/img/hotel-1.jpg" alt="{{this.hotelName}}">
+                <div class="hotel" data-id="{{this._id}}">
+                    <img src="{{this.hotelImages.[0]}}" alt="Hotel Image">
                     <div class="hotel-details">
                         <div class="hotel-name">{{this.hotelName}}</div>
                         <div class="hotel-standard">{{this.hotelStandard}} sao</div>
@@ -183,9 +183,27 @@
                 </div>
                 {{/each}}
             </div>
+
         </div>
     </div>
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Tìm tất cả các thẻ .hotel sau khi trang đã tải xong
+            const hotels = document.querySelectorAll('.hotel');
+
+            hotels.forEach(hotel => {
+                hotel.addEventListener('click', function () {
+                    // Lấy id của khách sạn từ thuộc tính data-id
+                    const hotelId = this.getAttribute('data-id');
+                    // Xây dựng URL động dựa trên môi trường hiện tại
+                    const baseUrl = `${window.location.protocol}//${window.location.host}`;
+                    // Chuyển hướng đến trang chi tiết khách sạn
+                    window.location.href = `${baseUrl}/showroom/${hotelId}`;
+                });
+            });
+        });
+
+
         function updatePriceValues() {
             var minPrice = document.getElementById('minPriceRange').value;
             var maxPrice = document.getElementById('maxPriceRange').value;

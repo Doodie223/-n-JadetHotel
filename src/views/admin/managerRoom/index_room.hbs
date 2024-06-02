@@ -10,6 +10,7 @@
                 <th>Room Type</th>
                 <th>Acreage</th>
                 <th>Price</th>
+                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -23,6 +24,7 @@
                 <td>{{this.roomType.type}}</td>
                 <td>{{this.acreage}}</td>
                 <td>{{this.price}}</td>
+                <td>{{this.description}}</td>
                 <td>
                     <a href="/admin/rooms/viewbyHotel/{{../hotel._id}}/edit/{{this._id}}">Edit</a>
                     <form action="/admin/rooms/viewbyHotel/{{../hotel._id}}/delete/{{this._id}}" method="POST"

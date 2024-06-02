@@ -27,6 +27,12 @@ const roomSchema = new mongoose.Schema(
       required: [true, "Price is required"],
       min: [0, "Price must be a positive number"],
     },
+    description: {
+      type: String,
+      required: [true, "Description is required"],
+      maxlength: [500, "Description must be at most 500 characters long"],
+      trim: true, // Removes whitespace from both ends of the string
+    },
     roomImages: {
       type: [String], // Array of strings to store multiple image paths
       required: [true, "At least one room image is required"],

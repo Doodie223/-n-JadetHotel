@@ -80,7 +80,7 @@ const addRooms = async (req, res) => {
 
     try {
       const hotel_id = req.params.id;
-      const { roomtype_id, number, acreage, price } = req.body;
+      const { roomtype_id, number, acreage, description, price } = req.body;
       const roomImages = req.files.map((file) => `/uploads/${file.filename}`);
 
       const newRoom = new roomModel({
@@ -89,6 +89,7 @@ const addRooms = async (req, res) => {
         number,
         acreage,
         price,
+        description,
         roomImages,
       });
 

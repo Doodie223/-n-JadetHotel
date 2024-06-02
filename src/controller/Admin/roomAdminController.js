@@ -57,12 +57,14 @@ const viewAddRooms = async (req, res) => {
   try {
     const username = req.session.username;
     const hotelId = req.params.id;
+    const hotel = await hotelModel.findById(hotelId);
     const roomTypes = await roomTypeModel.find({});
     res.render("admin/managerRoom/add_room", {
       layout: "layouts/ADMIN",
       username,
       hotelId,
       roomTypes,
+      hotel
     });
   } catch (error) {
     console.error(error);

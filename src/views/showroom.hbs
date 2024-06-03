@@ -10,10 +10,12 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #313F38;
         }
 
         .container {
             display: flex;
+
         }
 
         .sidebar {
@@ -31,6 +33,11 @@
 
         h2 {
             margin-top: 0;
+
+        }
+
+        .font-color {
+            color: white;
         }
 
         .filter-group {
@@ -152,7 +159,7 @@
             </form>
         </div>
         <div class="content">
-            <h2>Danh sách phòng của khách sạn {{hotel.hotelName}}</h2>
+            <h2 class="font-color">Danh sách phòng của khách sạn {{hotel.hotelName}}</h2>
             <div class="room-list">
                 {{#each allRoom}}
 

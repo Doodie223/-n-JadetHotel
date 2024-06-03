@@ -10,10 +10,12 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #313F38;
         }
 
         .container {
             display: flex;
+
         }
 
         .sidebar {
@@ -31,6 +33,10 @@
 
         h2 {
             margin-top: 0;
+        }
+
+        .font-color {
+            color: white;
         }
 
         .filter-group {
@@ -82,15 +88,17 @@
         .hotel-list {
             display: flex;
             flex-direction: column;
+
         }
 
         .hotel {
             display: flex;
             padding: 10px;
             margin-bottom: 10px;
-            border: 1px solid #ddd;
+            border: 0px solid #ddd;
             background-color: #fff;
             transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #FCD043;
         }
 
         .hotel:hover {
@@ -170,7 +178,7 @@
             </form>
         </div>
         <div class="content">
-            <h2>Danh sách Khách sạn</h2>
+            <h2 class="font-color">Danh sách Khách sạn</h2>
             <div class="hotel-list">
                 {{#each allHotels}}
                 <div class="hotel" data-id="{{this._id}}">

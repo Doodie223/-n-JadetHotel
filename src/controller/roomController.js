@@ -61,7 +61,9 @@ const showRoomDetailsPage = async (req, res) => {
 
     console.log(roomWithType);
     res.render('roomdetail', {
-        layout: 'layouts/main'
+        layout: 'layouts/main',
+        room: roomWithType, // Truyền dữ liệu room và roomType vào đây
+        title: 'Room Detail' // Đặt tiêu đề nếu cần thiết
     });
 }
 module.exports = {

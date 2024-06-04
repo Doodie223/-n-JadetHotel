@@ -34,7 +34,6 @@ const showRoomPage = async (req, res) => {
             Room_Specs: roomTypes[index],
         };
     });
-    console.log(roomsWithTypes);
     res.render('showroom', {
         layout: 'layouts/main',
         hotel: hotel,
@@ -58,8 +57,6 @@ const showRoomDetailsPage = async (req, res) => {
         ...room.toObject(),
         Room_Specs: roomType,
     };
-
-    console.log(roomWithType);
     res.render('roomdetail', {
         layout: 'layouts/main',
         room: roomWithType, // Truyền dữ liệu room và roomType vào đây

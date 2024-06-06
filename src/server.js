@@ -1,6 +1,6 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
-const session = require("express-session");
+var session = require('cookie-session');
 require("dotenv").config();
 const path = require("path");
 

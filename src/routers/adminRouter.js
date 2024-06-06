@@ -16,7 +16,7 @@ router.get("/login", authController.LoginPage);
 router.post("/login", authController.Login);
 router.get("/logout", authController.Logout);
 
-//router.use(checkLogin);
+router.use(checkLogin);
 //router home page for administration
 router.get("/", adminController.adminHomepage);
 

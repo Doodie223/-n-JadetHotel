@@ -1,12 +1,137 @@
 <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #313F38;
+    }
 
+    .container {
+        display: flex;
+
+    }
+
+    .sidebar {
+        width: 25%;
+        padding: 20px;
+        background-color: #f4f4f4;
+        border-right: 1px solid #ddd;
+        margin-top: 65px;
+    }
+
+    .content {
+        width: 75%;
+        padding: 20px;
+    }
+
+    h2 {
+        margin-top: 0;
+
+    }
+
+    .font-color {
+        color: white;
+    }
+
+    .filter-group {
+        margin-bottom: 20px;
+    }
+
+    .filter-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .filter-group select,
+    .filter-group input[type="range"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 1em;
+        background-color: #fff;
+        transition: border-color 0.3s;
+    }
+
+    .filter-group select:focus,
+    .filter-group input[type="range"]:focus {
+        border-color: #007BFF;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .room-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .room {
+        display: flex;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .room:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .room img {
+        width: 400px;
+        height: 266px;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+
+    .room-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+    }
+
+    .room-name {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .room-price {
+        color: #007BFF;
+        font-size: 1em;
+    }
 </style>
 <main>
-    <div class="room-detail-page">
-        <div class="starter">123</div>
-        <div class="room-info"></div>
-        <div class="services"></div>
-        <div class="options"></div>
+    <div class="container">
+        <div class="room-detail-page">
+            <div class="starter">123</div>
+            <div class="room-info"></div>
+            <div class="services"></div>
+            <div class="options"></div>
+        </div>
+    </div>
+
 </main>
 
 <script>

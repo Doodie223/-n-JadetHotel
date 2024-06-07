@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../public/css/layout.css" type="text/css" />
+    <link rel="stylesheet" href="css/layout.css" type="text/css" />
 
     <style>
         body {
@@ -163,6 +163,39 @@
         .discover-more:hover {
             color: #fff;
         }
+
+        .exp-share {
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            width: 1519.2px;
+            height: 650.29px;
+            margin-top: 20px;
+        }
+
+        .exp-share-content {
+            margin-right: 700px;
+            width: 500px;
+            height: 100px;
+            color: wheat;
+        }
+
+        .line-1 {
+            font-weight: bold;
+            font-size: 26px;
+            margin-left: 40px;
+        }
+
+        .line-2 {
+            margin-left: -77px;
+        }
+
+        .exp-share-img {
+            display: inline-block;
+            width: 253.16px;
+            height: 348.09px;
+            margin: 0 5px;
+        }
     </style>
 </head>
 
@@ -241,16 +274,25 @@
                 </ul>
             </div>
             <div class="exp-share">
-                <img src="">
-                <img>
-                <img>
-                <img>
-                <img>
-                <img>
-                <img>
-                <img>
-                <img>
-                <img>
+                <div class="exp-share-content">
+                    <p class="line-1">Sharing our experience route</p>
+                    <H2 class="line-2">#SharingisCaring</H2>
+                </div class="exp-share-img">
+                <img src="sharing/tải xuống (1).jpg">
+                <img src="sharing/tải xuống (2).jpg">
+                <img src="sharing/tải xuống (3).jpg">
+                <img src="sharing/tải xuống (4).jpg">
+                <img src="sharing/tải xuống (5).jpg">
+                <img src="sharing/tải xuống (6).jpg">
+                <img src="sharing/tải xuống (7).jpg">
+                <img src="sharing/tải xuống (8).jpg">
+                <img src="sharing/tải xuống (9).jpg">
+                <img src="sharing/tải xuống (10).jpg">
+                <img src="sharing/tải xuống (11).jpg">
+                <img src="sharing/tải xuống (12).jpg">
+                <img src="sharing/tải xuống (13).jpg">
+                <img src="sharing/tải xuống (14).jpg">
+                <img src="sharing/tải xuống (15).jpg">
             </div>
         </div>
 
@@ -265,6 +307,59 @@
                     top: 830,
                     behavior: 'smooth'
                 });
+            }
+
+            let isDragging = false;
+            let startPosition = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let animationId = 0;
+            const slider = document.getElementById('imageSlider');
+
+            slider.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startPosition = e.clientX - slider.offsetLeft;
+                prevTranslate = currentTranslate;
+                slider.style.cursor = 'grabbing';
+                animationId = requestAnimationFrame(animation);
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const currentPosition = e.clientX - slider.offsetLeft;
+                    currentTranslate = prevTranslate + currentPosition - startPosition;
+                }
+            });
+
+            slider.addEventListener('mouseup', () => {
+                cancelAnimationFrame(animationId);
+                isDragging = false;
+                const moved = currentTranslate - prevTranslate;
+                if (moved < -100) {
+                    // Move to next image
+                    currentTranslate = prevTranslate - slider.clientWidth;
+                } else if (moved > 100) {
+                    // Move to previous image
+                    currentTranslate = prevTranslate + slider.clientWidth;
+                }
+                setPosition();
+                slider.style.cursor = 'grab';
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                cancelAnimationFrame(animationId);
+                isDragging = false;
+                slider.style.cursor = 'grab';
+                setPosition();
+            });
+
+            function animation() {
+                slider.style.transform = `translateX(${currentTranslate}px)`;
+                if (isDragging) requestAnimationFrame(animation);
+            }
+
+            function setPosition() {
+                slider.style.transform = `translateX(${currentTranslate}px)`;
             }
         </script>
     </div>

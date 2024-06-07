@@ -99,6 +99,11 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
+        .room-type {
+            font-size: 26px;
+            font-weight: 600;
+        }
+
         .room:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -114,8 +119,6 @@
         .room-details {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
         }
 
         .room-name {
@@ -123,9 +126,22 @@
             font-weight: bold;
         }
 
+        .room-desc {
+            text-align: justify;
+        }
+
         .room-price {
-            color: #007BFF;
-            font-size: 1em;
+            width: fit-content;
+            font-size: 26px;
+            color: #fff;
+            background: orange;
+            padding: 6px;
+            border-radius: 10px;
+        }
+
+        .room-book-btn {
+            display: block;
+            margin-top: auto;
         }
     </style>
 </head>
@@ -166,9 +182,41 @@
                     <img src="{{this.roomImages.[0]}}" alt="Room Images">
                     <div class="room-details">
                         <div class="room-type">{{this.Room_Specs.type}}</div>
-                        <div class="room-name">{{this.number}}</div>
-                        <div class="room-acreage">{{this.acreage}} M²</div>
-                        <div class="room-price">{{this.price}}$</div>
+                        {{!-- <div class="room-name">{{this.number}}</div> --}}
+                        {{!-- <div class="room-acreage">{{this.acreage}} M²</div> --}}
+                        <div class="room-desc">
+                            <p>Các Phòng Family Suite nằm ở tầng 7 đến tầng 16, với diện tích 100m². Với đồ nội thất
+                                gỗ
+                                cao cấp, decor hoa anh đào phong cách Việt Nam, view thoáng của Hồ Giang Võ và các
+                                tiện
+                                nghi sang trọng, các phòng mang lại cảm giác ấm cúng và thoải mái cho khách.
+                            </p>
+                        </div>
+                        <div class="room-price">
+                            <span>{{this.price}}$</span>
+                        </div>
+                        {{!-- <ul>
+                            <li>Rộng 32m²</li>
+                            <li>View thành phố</li>
+                            <li>Không hút thuốc</li>
+                            <li>Điều hòa không khí</li>
+                            <li>Bàn làm việc</li>
+                            <li>Bồn tắm</li>
+                            <li>Truyền hình cáp/vệ tinh</li>
+                            <li>Điện thoại</li>
+                            <li>Máy sấy tóc</li>
+                            <li>Đồng hồ báo thức</li>
+                            <li>Truy cập Internet dial-up</li>
+                            <li>Thang máy</li>
+                            <li>Két an toàn trong phòng</li>
+                            <li>Wifi miễn phí</li>
+                            <li>Vòi sen riêng biệt</li>
+                            <li>Minibar</li>
+                            <li>Đồ vệ sinh cá nhân miễn phí </li>
+                        </ul> --}}
+
+                        <button type="button" class="btn btn-primary room-book-btn">Đặt phòng</button>
+
                     </div>
                 </div>
                 {{/each}}

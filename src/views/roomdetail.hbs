@@ -1,4 +1,5 @@
 <style>
+    /* Your custom CSS styles here */
     body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -11,157 +12,304 @@
 
     }
 
-    .sidebar {
-        width: 25%;
+    .decs-room-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        line-height: 1;
+
+    }
+
+    .room-detail {
+        width: 1400px;
+        height: 796px;
+    }
+
+    .hotel-detail {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .hotel-detail img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .image-wrapper {
+        height: 500px;
+
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-wrapper img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+
+    .thumbnail-slider {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .thumbnail-slider .swiper-slide {
+        width: 80px;
+        height: 60px;
+        overflow: hidden;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    .thumbnail-slider .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .decs-room {
+        width: 500px;
+        height: auto;
+        background-color: #1A1C21;
         padding: 20px;
-        background-color: #f4f4f4;
-        border-right: 1px solid #ddd;
-        margin-top: 65px;
+        color: wheat;
+        border-radius: 10px;
     }
 
-    .room-detail-page {
-        color: wheat
+
+
+    .decs-room-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
     }
 
-    .content {
-        width: 75%;
-        padding: 20px;
-    }
-
-    h2 {
-        margin-top: 0;
-
-    }
-
-    .font-color {
-        color: white;
-    }
-
-    .filter-group {
+    .room-number,
+    .room-price,
+    .room-m2,
+    .standard,
+    .decs-info {
         margin-bottom: 20px;
     }
 
-    .filter-group label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .filter-group select,
-    .filter-group input[type="range"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-        font-size: 1em;
-        background-color: #fff;
-        transition: border-color 0.3s;
-    }
-
-    .filter-group select:focus,
-    .filter-group input[type="range"]:focus {
-        border-color: #007BFF;
-    }
-
-    button {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        background-color: #007BFF;
+    .order-btn {
+        background-color: #4CAF50;
         color: white;
         border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
         border-radius: 5px;
         cursor: pointer;
-        font-size: 1em;
         transition: background-color 0.3s;
     }
 
-    button:hover {
-        background-color: #0056b3;
+    .order-btn:hover {
+        color: #313F38 !important;
+        background-color: #FCD043;
     }
 
-    .room-list {
-        display: flex;
-        flex-direction: column;
+    .other-rooms {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #1A1C21;
+        color: wheat;
+        border-radius: 10px;
     }
 
-    .room {
-        display: flex;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ddd;
-        background-color: #fff;
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .room:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .room img {
-        width: 400px;
-        height: 266px;
-        object-fit: cover;
-        margin-right: 10px;
-    }
-
-    .room-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex-grow: 1;
-    }
-
-    .room-name {
-        font-size: 1.2em;
+    .other-rooms h2 {
+        font-size: 20px;
         font-weight: bold;
+        margin-bottom: 15px;
     }
 
-    .room-price {
-        color: #007BFF;
-        font-size: 1em;
+    .room-cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .room-card {
+        background-color: #313F38;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .room-info {
+        margin-top: 10px;
+    }
+
+    .room-info .decs-room-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .room-info .room-price {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .room-info .room-standard {
+        font-size: 14px;
+        color: #9FA3A7;
+        margin-bottom: 10px;
+    }
+
+    .room-card .order-btn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .room-card .order-btn:hover {
+        background-color: #FCD043;
     }
 </style>
 
-<!-- views/rooms.html -->
-<!DOCTYPE html>
-<html lang="en">
+<div class="container">
+    <div class="room-detail">
+        <table>
+            <td class="img-disp">
+                <div class="hotel-detail mt-5">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            {{#each room.roomImages}}
+                            <div class="swiper-slide">
+                                <div class="image-wrapper">
+                                    <img src="{{this}}" alt="Hotel Image">
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                    <div class="thumbnail-slider mt-3">
+                        {{#each room.roomImages}}
+                        <div class="swiper-slide">
+                            <img src="{{this}}" alt="Hotel Image">
+                        </div>
+                        {{/each}}
+                    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Rooms</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
+                </div>
+            </td>
+            <td class="decs-room">
+                <div class="decs-room-name">
+                    <H3> {{room.Room_Specs.type}}</H3>
+                </div>
+                <div class="room-number">
+                    <BR>
+                    <p>Số phòng: {{room.number}}</p>
+                </div>
+                <div class="room-price">
+                    <BR>
+                    <p>Giá phòng: {{room.price}}</p>
+                </div>
+                <div class="room-m2">
+                    <p>Diện tích: {{room.acreage}} m²</p>
+                </div>
+                <div class="standard">
+                    <div>Chất lượng: {{room.Hotel_Standard}}</div>
+                </div>
+                <div class="decs-info">
+                    <div>Chất lượng: {{room.description}}</div>
+                </div>
+                <button type="button" class="order-btn">Đặt ngay</button>
+            </td>
+        </table>
+    </div>
 
-<body>
-    <h1>Hotel Rooms</h1>
-    <div id="room-list">
-        {{#each room}}
-        <div class="room">
-            <img src="/images/<%= room.image %>" alt="<%= room.name %>" class="room-image">
-            <div class="room-details">
-                <h2>
-                    {{this.hotelName}}
-                </h2>
-                <p>
-                    <%= room.description %>
-                </p>
-                <p>Price: $<%= room.price %> per night</p>
-                <button class="book-button">Book Now</button>
+
+</div>
+<div class="other-rooms">
+    <h2>Các phòng khác có giá tương tự:</h2>
+    <div class="room-cards">
+        {{#each suggestedRooms}}
+        <div class="room-card">
+            <div class="image-wrapper">
+                <img src="{{this.image}}" alt="Room Image">
+            </div>
+            <div class="room-info">
+                <div class="decs-room-name">{{this.type}}</div>
+                <div class="room-price">Giá phòng: {{this.price}}</div>
+                <div class="room-standard">Chất lượng: {{this.standard}}</div>
+                <button type="button" class="order-btn">Đặt ngay</button>
             </div>
         </div>
         {{/each}}
+        {{#each suggestedRooms}}
+        <div class="room-card">
+            <div class="image-wrapper">
+                <img src="{{this.image}}" alt="Room Image">
+            </div>
+            <div class="room-info">
+                <div class="decs-room-name">{{this.type}}</div>
+                <div class="room-price">Giá phòng: {{this.price}}</div>
+                <div class="room-standard">Chất lượng: {{this.standard}}</div>
+                <button type="button" class="order-btn">Đặt ngay</button>
+            </div>
+        </div>
+        {{/each}}
+
     </div>
-</body>
-
-</html>
 
 
-<script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-... your integrity hash ..." crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-</script>
+    <script>
+        var swiper = new Swiper('.mySwiper', {
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+        });
+
+        var thumbnailSlides = document.querySelectorAll('.thumbnail-slider .swiper-slide');
+        var largeImage = document.querySelector('.mySwiper .swiper-slide-active img');
+
+        thumbnailSlides.forEach((slide, index) => {
+            slide.addEventListener('click', () => {
+                swiper.slideTo(index);
+                largeImage.src = hotel.hotelImages[index];
+            });
+        });
+
+        var swiperContainer = document.querySelector('.mySwiper');
+
+        swiperContainer.addEventListener('mouseenter', () => {
+            swiper.autoplay.stop();
+        });
+
+        swiperContainer.addEventListener('mouseleave', () => {
+            swiper.autoplay.start();
+        });
+    </script>

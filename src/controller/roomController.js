@@ -57,13 +57,14 @@ const showRoomDetailsPage = async (req, res) => {
     const roomWithType = {
         ...room.toObject(),
         Room_Specs: roomType,
-        Hotel_Name: hotel.hotelName
+        Hotel_Name: hotel.hotelName,
+        Hotel_Standard: hotel.hotelStandard
     };
     console.log(roomWithType);
     res.render('roomdetail', {
         layout: 'layouts/main',
         room: roomWithType, // Truyền dữ liệu room và roomType vào đây
-        title: 'Room Detail' // Đặt tiêu đề nếu cần thiết
+        title: 'Room Detail ' // Đặt tiêu đề nếu cần thiết
     });
 }
 module.exports = {

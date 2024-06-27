@@ -83,9 +83,10 @@ const Login = async (req, res) => {
 };
 
 const Logout = (req, res) => {
-  req.session.destroy();
+  req.session = null;
   res.redirect("admin/login");
 };
+
 module.exports = {
   RegisterPage,
   Register,

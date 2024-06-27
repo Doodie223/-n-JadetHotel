@@ -126,44 +126,41 @@
         font-size: 1em;
     }
 </style>
-<div class="container">
-    <div class="room-detail-page">
-        {{#each allHotels}}
-        <div class="room-info">
-            <img src="uploads/1717271776737.jpg" alt="Room Image" class="room">
 
+<!-- views/rooms.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Rooms</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <h1>Hotel Rooms</h1>
+    <div id="room-list">
+        {{#each room}}
+        <div class="room">
+            <img src="/images/<%= room.image %>" alt="<%= room.name %>" class="room-image">
             <div class="room-details">
-                <h2 class="room-name">Deluxe Room</h2>
-                <p class="room-price">$200 per night</p>
-                <div class="room-rating">
-                    <span class="rating">Rating: 4.5/5</span>
-                    <!-- Đánh giá có thể thay đổi -->
-                </div>
-                <p class="room-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque purus id tellus
-                    fermentum, ac interdum urna sollicitudin. Ut ut leo in quam aliquam ullamcorper nec non dui. Vivamus
-                    fermentum tristique tempor. Duis in mauris in libero feugiat vulputate.
+                <h2>
+                    {{this.hotelName}}
+                </h2>
+                <p>
+                    <%= room.description %>
                 </p>
+                <p>Price: $<%= room.price %> per night</p>
+                <button class="book-button">Book Now</button>
             </div>
         </div>
         {{/each}}
-        <div class="services">
-            <h3>Services</h3>
-            <ul>
-                <li>Free Wi-Fi</li>
-                <li>Swimming Pool Access</li>
-                <li>24/7 Room Service</li>
-                <!-- Các dịch vụ khác có thể thêm vào đây -->
-            </ul>
-        </div>
-        <div class="options">
-            <h3>Booking Options</h3>
-            <a href="/payment"><button>Book Now</button></a>
-            <!-- Các tùy chọn đặt phòng khác có thể thêm vào đây -->
-        </div>
     </div>
-</div>
-</main>
+</body>
+
+</html>
+
 
 <script>
 

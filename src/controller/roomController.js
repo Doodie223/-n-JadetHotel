@@ -52,11 +52,14 @@ const showRoomDetailsPage = async (req, res) => {
     }
 
     const roomType = await roomTypeModel.findById(room.roomtype_id);
+    const hotel = await hotelModel.findById(room.hotel_id);
 
     const roomWithType = {
         ...room.toObject(),
         Room_Specs: roomType,
+        Hotel_Name: hotel.hotelName
     };
+    console.log(roomWithType);
     res.render('roomdetail', {
         layout: 'layouts/main',
         room: roomWithType, // Truyền dữ liệu room và roomType vào đây

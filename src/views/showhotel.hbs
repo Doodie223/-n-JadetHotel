@@ -189,7 +189,7 @@
                     <div class="hotel-details">
                         <div class="hotel-name">{{this.hotelName}}</div>
                         <div class="hotel-standard">{{this.hotelStandard}} sao</div>
-                        <div class="hotel-price">Giá từ: {{this.minPrice}}$ đến {{this.maxPrice}}$</div>
+                        <div class="hotel-price">Giá từ: {{this.hotelPrice}}$ đến {{this.hotelPrice}}$</div>
                     </div>
                 </div>
                 {{/each}}
@@ -264,20 +264,18 @@
 
         function updateURL(event) {
             event.preventDefault();
-
             const city = document.getElementById('city').value;
             const standard = document.getElementById('standard').value;
-            const minPrice = document.getElementById('minPriceRange').value;
-            const maxPrice = document.getElementById('maxPriceRange').value;
+            const minPriceRange = document.getElementById('minPriceRange').value;
+            const maxPriceRange = document.getElementById('maxPriceRange').value;
 
-            const queryParams = new URLSearchParams({
-                city,
-                standard,
-                minPrice,
-                maxPrice
-            });
+            const url = new URL(window.location.href);
+            url.searchParams.set('city', city);
+            url.searchParams.set('standard', standard);
+            url.searchParams.set('minPriceRange', minPriceRange);
+            url.searchParams.set('maxPriceRange', maxPriceRange);
 
-            window.location.search = queryParams.toString();
+            window.location.href = url.toString();
         }
 
     </script>

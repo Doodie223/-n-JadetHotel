@@ -24,7 +24,7 @@ const showHotel = async (req, res) => {
             // Add the updated hotel to the hotels array
             hotels.push(hotel);
         }
-
+        console.log(hotels)
         res.render('showhotel', {
             layout: 'layouts/main',
             allHotels: hotels,

@@ -13,7 +13,6 @@ const showHotel = async (req, res) => {
             const rooms = await roomModel.find({ hotel_id: hotel._id });
 
             if (!rooms.length) {
-                console.log('Room of hotel ' + i + ' is empty');
                 hotel.minPrice = null;
                 hotel.maxPrice = null;
             } else {
@@ -25,8 +24,6 @@ const showHotel = async (req, res) => {
             // Add the updated hotel to the hotels array
             hotels.push(hotel);
         }
-
-        console.log(hotels);
 
         res.render('showhotel', {
             layout: 'layouts/main',

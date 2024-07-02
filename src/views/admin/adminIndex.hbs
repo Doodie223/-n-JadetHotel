@@ -1,6 +1,47 @@
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 1px;
+        border: 3px solid black;
+    }
+
+    td {
+        border: 1px solid black;
+        width: 180px;
+        height: 170px;
+        text-align: center;
+    }
+</style>
+
 <div class="container">
     <h1>Đây là trang Admin</h1>
-    <p><a href="/admin/hotels">Manager Hotel</a></p>
-    <p><a href="/admin/roomsType">Manager Type</a></p>
-    <p><a href="/admin/hotels/add">Add Hotel</a></p>
+
+
+
+    <div>
+        <table class="">
+            <tr>
+                <td>
+                    <button><a href="/admin/hotels">Quản lý Khách Sạn</a></button>
+                </td>
+                <td>
+                    <button><a href="/admin/roomsType">Quản lý kiểu phòng</a></button>
+                </td>
+                <td>
+                    <button><a href="/admin/hotels/add">Thêm Khách sạn mới</a></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button><a href="/admin/hotels">Quản lý dịch vụ & thành phố </a></button>
+                </td>
+                <td>
+                    <button><a href="/admin/roomsType">Thêm dịch vụ mới</a></button>
+                </td>
+                <td>
+                    <button><a href="/admin/hotels/add">Thêm thành phố mới</a></button>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

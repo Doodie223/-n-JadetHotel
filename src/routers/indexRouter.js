@@ -6,7 +6,6 @@ const indexController = require("../controller/indexController");
 const roomController = require("../controller/roomController");
 const paymentController = require("../controller/paymentController");
 const orderController = require("../controller/orderController");
-
 // Route GET '/'
 router.get('/', indexController.Homepage);
 // Route GET '/about'

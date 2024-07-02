@@ -132,8 +132,13 @@ const viewEditHotel = async (req, res) => {
 
 const editHotel = async (req, res) => {
   try {
-    const { hotelName, hotelAddress, hotelPhone, hotelStandard, hotelCity } =
-      req.body;
+    const { hotelName, hotelAddress, hotelPhone, hotelStandard, hotelCity } = req.body;
+    console.log("Hotel ID:", req.params.id);
+    console.log("Hotel name:", hotelName);
+    console.log("Hotel address:", hotelAddress);
+    console.log("Hotel phone:", hotelPhone);
+    console.log("Hotel standard:", hotelStandard);
+    console.log("Hotel city:", hotelCity);
 
     upload(req, res, async (err) => {
       if (err) {
@@ -141,33 +146,21 @@ const editHotel = async (req, res) => {
         return res.status(400).send("Error uploading files");
       }
 
-      // Kiểm tra nếu có tệp được tải lên, thực hiện cập nhật hình ảnh
+      let updateData = {
+        hotelName,
+        hotelAddress,
+        hotelPhone,
+        hotelStandard,
+        hotelCity,
+      };
+
       if (req.files && req.files.length > 0) {
-        // Lấy đường dẫn của tệp hình ảnh mới
-        const hotelImages = req.files.map(
-          (file) => `/uploads/${file.filename}`
-        );
-        // Cập nhật thông tin khách sạn cùng với hình ảnh mới
-        await hotelModel.findByIdAndUpdate(req.params.id, {
-          hotelName,
-          hotelAddress,
-          hotelPhone,
-          hotelStandard,
-          hotelCity,
-          hotelImages, // Thêm hình ảnh mới vào mảng
-        });
-      } else {
-        // Nếu không có hình ảnh mới được tải lên, chỉ cập nhật thông tin khách sạn
-        await hotelModel.findByIdAndUpdate(req.params.id, {
-          hotelName,
-          hotelAddress,
-          hotelPhone,
-          hotelStandard,
-          hotelCity,
-        });
+        const hotelImages = req.files.map(file => `/uploads/${file.filename}`);
+        updateData.hotelImages = hotelImages;
       }
 
-      // Chuyển hướng về trang chi tiết khách sạn đã cập nhật
+      await hotelModel.findByIdAndUpdate(req.params.id, updateData);
+
       res.redirect(`/admin/hotels/view/${req.params.id}`);
     });
   } catch (err) {

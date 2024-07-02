@@ -4,13 +4,41 @@ const roomTypeModel = require('../models/roomtypeModel')
 
 
 const showHotel = async (req, res) => {
-    const allHotels = await hotelModel.find();
-    res.render('showhotel', {
-        layout: 'layouts/main',
-        allHotels: allHotels,
-        title: 'Show Hotel'
-    });
-}
+    try {
+        const allHotels = await hotelModel.find();
+        const hotels = [];
+
+        for (let i = 0; i < allHotels.length; i++) {
+            const hotel = allHotels[i].toObject(); // Convert to plain object to avoid mutation issues
+            const rooms = await roomModel.find({ hotel_id: hotel._id });
+
+            if (!rooms.length) {
+                console.log('Room of hotel ' + i + ' is empty');
+                hotel.minPrice = null;
+                hotel.maxPrice = null;
+            } else {
+                const prices = rooms.map(room => room.price);
+                hotel.minPrice = Math.min(...prices);
+                hotel.maxPrice = Math.max(...prices);
+            }
+
+            // Add the updated hotel to the hotels array
+            hotels.push(hotel);
+        }
+
+        console.log(hotels);
+
+        res.render('showhotel', {
+            layout: 'layouts/main',
+            allHotels: hotels,
+            title: 'Show Hotel'
+        });
+    } catch (error) {
+        console.error('Error showing hotels:', error);
+        res.status(500).send('Server Error');
+    }
+};
+
 
 const roomDetails = (req, res) => {
     res.render('roomdetail', {

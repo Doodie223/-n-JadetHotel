@@ -5,12 +5,26 @@ const roomTypeModel = require('../models/roomtypeModel')
 
 const showHotel = async (req, res) => {
     try {
-        const allHotels = await hotelModel.find();
+        const { city, standard, minPrice, maxPrice } = req.query;
+        const query = {};
+
+        if (city && city !== 'all') {
+            query.city = city;
+        }
+
+        if (standard && standard !== 'all') {
+            query.standard = parseInt(standard);
+        }
+
+        const allHotels = await hotelModel.find(query);
         const hotels = [];
 
         for (let i = 0; i < allHotels.length; i++) {
             const hotel = allHotels[i].toObject(); // Convert to plain object to avoid mutation issues
-            const rooms = await roomModel.find({ hotel_id: hotel._id });
+            const rooms = await roomModel.find({
+                hotel_id: hotel._id,
+                price: { $gte: minPrice || 0, $lte: maxPrice || 10000 }
+            });
 
             if (!rooms.length) {
                 hotel.minPrice = null;
@@ -35,6 +49,7 @@ const showHotel = async (req, res) => {
         res.status(500).send('Server Error');
     }
 };
+
 
 
 const roomDetails = (req, res) => {

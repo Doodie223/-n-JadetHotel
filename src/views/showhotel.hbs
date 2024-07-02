@@ -152,8 +152,8 @@
                         <option value="all">Tất cả</option>
                         <option value="hanoi">Hà Nội</option>
                         <option value="hcmc">Hồ Chí Minh</option>
-                        <option value="hcmc">Đà Nẵng</option>
-                        <option value="hcmc">Phú Quốc</option>
+                        <option value="danang">Đà Nẵng</option>
+                        <option value="phuquoc">Phú Quốc</option>
                         <!-- Thêm các tùy chọn khác nếu cần -->
                     </select>
                 </div>
@@ -179,6 +179,7 @@
                 <button type="submit">Áp dụng</button>
             </form>
         </div>
+
         <div class="content">
             <h2 class="font-color">Danh sách Khách sạn</h2>
             <div class="hotel-list">
@@ -254,6 +255,31 @@
         }
 
         window.onload = setInitialValues;
+
+        function updatePriceValues() {
+            const minPrice = document.getElementById('minPriceRange').value;
+            const maxPrice = document.getElementById('maxPriceRange').value;
+            document.getElementById('priceValue').innerText = `${minPrice}$ - ${maxPrice}$`;
+        }
+
+        function updateURL(event) {
+            event.preventDefault();
+
+            const city = document.getElementById('city').value;
+            const standard = document.getElementById('standard').value;
+            const minPrice = document.getElementById('minPriceRange').value;
+            const maxPrice = document.getElementById('maxPriceRange').value;
+
+            const queryParams = new URLSearchParams({
+                city,
+                standard,
+                minPrice,
+                maxPrice
+            });
+
+            window.location.search = queryParams.toString();
+        }
+
     </script>
 </body>
 

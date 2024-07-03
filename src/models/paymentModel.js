@@ -22,20 +22,43 @@ const paymentSchema = new mongoose.Schema(
         message: (props) => `${props.value} is not a valid date`,
       },
     },
-    paymentMethod: {
-      type: String,
-      required: [true, "Payment method is required"],
-      enum: {
-        values: [
-          "Credit Card",
-          "Debit Card",
-          "PayPal",
-          "Bank Transfer",
-          "Cash",
-        ],
-        message: "{VALUE} is not a valid payment method",
+    checkinDate: {
+      type: Date,
+      required: [true, "Check-in date is required"],
+      validate: {
+        validator: function (v) {
+          return v instanceof Date && !isNaN(v.valueOf());
+        },
+        message: (props) => `${props.value} is not a valid date`,
       },
-      trim: true, // Removes whitespace from both ends of the string
+    },
+    checkoutDate: {
+      type: Date,
+      required: [true, "Check-out date is required"],
+      validate: {
+        validator: function (v) {
+          return v instanceof Date && !isNaN(v.valueOf()) && v > this.checkinDate;
+        },
+        message: (props) => `${props.value} must be after the check-in date`,
+      },
+    },
+    status: {
+      paymentMethod: {
+        type: String,
+        required: [true, "Payment method is required"],
+        enum: {
+          values: [
+            "Credit Card",
+            "Debit Card",
+            "PayPal",
+            "Bank Transfer",
+            "Cash",
+          ],
+          message: "{VALUE} is not a valid payment method",
+        },
+        trim: true, // Removes whitespace from both ends of the string
+      },
+
     },
   },
   { timestamps: true }

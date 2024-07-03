@@ -5,6 +5,7 @@ const roomTypeModel = require('../models/roomtypeModel')
 
 const showHotel = async (req, res) => {
     try {
+        
         const allHotels = await hotelModel.find();
         const hotels = [];
 

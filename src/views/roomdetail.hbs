@@ -213,26 +213,28 @@
             </td>
             <td class="decs-room">
                 <div class="decs-room-name">
-                    <H3> {{room.Room_Specs.type}}</H3>
+                    <h3 id="room-name">Phòng {{room.number}} của Khách sạn {{room.Hotel_Name}}</h3>
                 </div>
                 <div class="room-number">
-                    <BR>
-                    <p>Số phòng:{{room.number}} </p>
+                    <br>
+                    <p id="room-number">Số phòng: {{room.number}}</p>
+                </div>
+                <div class="type-room">
+                    <p id="type-room">Kiểu Phòng: {{room.Room_Specs.type}}</p>
                 </div>
                 <div class="room-price">
-                    <BR>
-                    <p>Giá phòng: {{room.price}}</p>
+                    <p id="room-price">Giá phòng: {{room.price}}</p>
                 </div>
                 <div class="room-m2">
-                    <p>Diện tích: {{room.acreage}} m²</p>
+                    <p id="room-acreage">Diện tích: {{room.acreage}} m²</p>
                 </div>
                 <div class="standard">
-                    <div>Chất lượng: {{room.Hotel_Standard}}</div>
+                    <div id="room-standard">Chất lượng: {{room.Hotel_Standard}}</div>
                 </div>
                 <div class="decs-info">
-                    <div>Tiện ích đi kèm: <br>{{room.description}}</div>
+                    <div id="room-description">Tiện ích đi kèm: <br>{{room.description}}</div>
                 </div>
-                <button type="button" class="order-btn">Đặt ngay</button>
+                <button type="button" class="order-btn" onclick="bookRoom()">Đặt ngay</button>
             </td>
         </table>
     </div>
@@ -279,6 +281,18 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
     <script>
+        // Function to extract roomId from current URL
+        function getRoomIdFromUrl() {
+            const url = window.location.href;
+            const parts = url.split('/');
+            const roomId = parts.pop() || parts.pop(); // Get the last part of the URL
+            return roomId;
+        }
+
+        // Log roomId to console
+        console.log('RoomId từ URL:', getRoomIdFromUrl());
+
+        // Remaining script for your page
         var swiper = new Swiper('.mySwiper', {
             pagination: {
                 el: '.swiper-pagination',
@@ -300,6 +314,8 @@
             slide.addEventListener('click', () => {
                 swiper.slideTo(index);
                 largeImage.src = hotel.hotelImages[index];
+                // Log the URL of the selected room image
+                console.log('URL của phòng đã chọn:', largeImage.src);
             });
         });
 
@@ -312,4 +328,46 @@
         swiperContainer.addEventListener('mouseleave', () => {
             swiper.autoplay.start();
         });
+
+        function bookRoom() {
+            const roomId = getRoomIdFromUrl(); // Get roomId from URL
+            const roomType = document.getElementById('type-room').innerText.split(': ')[1];
+            const roomNumber = document.getElementById('room-number').innerText.split(': ')[1];
+            const roomPrice = document.getElementById('room-price').innerText.split(': ')[1];
+            const roomAcreage = document.getElementById('room-acreage').innerText.split(': ')[1];
+            const roomStandard = document.getElementById('room-standard').innerText.split(': ')[1];
+            const hotelName = document.getElementById('room-name').innerText.split('của Khách sạn ')[1];
+            const roomDescription = document.getElementById('room-description').innerText.split(': ')[1];
+            const firstImage = document.querySelector('.swiper-slide img');
+            const imageUrl = firstImage.src;
+
+            console.log('URL của phòng đã chọn:', imageUrl);
+
+            const roomData = {
+                roomId: roomId,
+                hotel_name: hotelName,
+                type: roomType,
+                number: roomNumber,
+                price: roomPrice,
+                acreage: roomAcreage,
+                standard: roomStandard,
+                description: roomDescription,
+                image: imageUrl
+            };
+
+            fetch('/payment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(roomData)
+            }).then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = '/payment';
+                    } else {
+                        alert('Error booking room');
+                    }
+                });
+        }
     </script>

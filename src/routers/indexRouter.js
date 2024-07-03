@@ -23,6 +23,7 @@ router.get('/showroom/roomDetails/:id', roomController.showRoomDetailsPage);
 
 //Route payment
 router.get('/payment', paymentController.paymentPage);
+router.post('/payment', paymentController.bookRoom);
 
 //Route order 
 router.get('/order', orderController.orderPage);

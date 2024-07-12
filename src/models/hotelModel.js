@@ -41,7 +41,7 @@ const hotelSchema = new mongoose.Schema(
       trim: true, // Removes whitespace from both ends of a string
     },
     hotelImages: {
-      type: [String], // Array of strings to store multiple image paths
+      type: [String], // Array of strings tFo store multiple image paths
       required: [true, "At least one hotel image is required"],
       validate: {
         validator: function (v) {

@@ -5,8 +5,14 @@ const roomTypeModel = require('../models/roomtypeModel')
 
 const showHotel = async (req, res) => {
     try {
-        
-        const allHotels = await hotelModel.find();
+        console.log("request show hotel: ", req);
+        let allHotels = [];
+        if (Object.keys(req.query).length > 0) {
+            console.log("request search hotel: ", 123);
+            allHotels = await hotelModel.find({ hotelCity: req.query.city, hotelStandard: req.query.standard });
+        } else {
+            allHotels = await hotelModel.find();
+        }
         const hotels = [];
 
         for (let i = 0; i < allHotels.length; i++) {
@@ -25,7 +31,7 @@ const showHotel = async (req, res) => {
             // Add the updated hotel to the hotels array
             hotels.push(hotel);
         }
-        
+
         res.render('showhotel', {
             layout: 'layouts/main',
             allHotels: hotels,

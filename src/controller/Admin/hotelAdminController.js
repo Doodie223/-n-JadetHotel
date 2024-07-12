@@ -68,20 +68,20 @@ const viewHotel = async (req, res) => {
   try {
     const username = req.session.username;
     const data = await hotelModel.aggregate([
-            {
-                $lookup: {
-                    from: 'rooms', // the collection name in MongoDB is usually the plural of the model name
-                    localField: '_id',
-                    foreignField: 'hotel_id',
-                    as: 'rooms'
-                }
-            },
-            {
-                $addFields: {
-                    roomCount: { $size: '$rooms' }
-                }
-            }
-        ]);
+      {
+        $lookup: {
+          from: 'rooms', // the collection name in MongoDB is usually the plural of the model name
+          localField: '_id',
+          foreignField: 'hotel_id',
+          as: 'rooms'
+        }
+      },
+      {
+        $addFields: {
+          roomCount: { $size: '$rooms' }
+        }
+      }
+    ]);
     res.render("admin/managerHotel/adminHotel", {
       layout: "layouts/ADMIN",
       hotel: data,
@@ -96,6 +96,13 @@ const viewDetailHotel = async (req, res) => {
   try {
     const username = req.session.username;
     const hotel = await hotelModel.findById(req.params.id);
+    const HOTEL_CITY_LABEL = {
+      "hcmc": "Hồ Chí Minh",
+      "hanoi": "Hà Nội",
+      "all": "Tất cả"
+    }
+    hotel.hotelCity = HOTEL_CITY_LABEL[hotel.hotelCity];
+
     res.render("admin/managerHotel/detail-hotel", {
       layout: "layouts/ADMIN",
       hotel: hotel,
@@ -133,6 +140,7 @@ const viewEditHotel = async (req, res) => {
 const editHotel = async (req, res) => {
   try {
     const { hotelName, hotelAddress, hotelPhone, hotelStandard, hotelCity } = req.body;
+    console.log("request:", req);
     console.log("Hotel ID:", req.params.id);
     console.log("Hotel name:", hotelName);
     console.log("Hotel address:", hotelAddress);
